@@ -11,10 +11,16 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-  get-messge-from-commit:
-      - name: Get Commit Message
-        id : commit-message
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: my commit message here
+        id: commit-message
         run: |
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           echo "::set-output name=commit_message::$COMMIT_MESSAGE"
+
+      - name: Display commit message here my
+        run: |
+          echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"
 

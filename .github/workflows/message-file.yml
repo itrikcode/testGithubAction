@@ -19,6 +19,6 @@ jobs:
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           echo "::set-output name=commit_message::$COMMIT_MESSAGE"
 
-      - name: Display commit message
+      - name: Display commit message my
         run: |
           echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"

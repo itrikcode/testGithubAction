@@ -15,13 +15,14 @@ jobs:
       - name: Running my App
         run: |
           java -jar ./target/gitactiontest-0.0.1-SNAPSHOT.jar
-          sleep 40
       - name: newman action
         continue-on-error: true
         uses: matt-ball/newman-action@master
         with:
           collection: my-test.json
-      - name: Stopping Scorpio
+          reporter: cli
+          bail: true
+      - name: Stopping my app
         run:  # Retrieve the PID from the output variable
           PID=${{ steps.long-running-command.outputs.pid }}
           pkill -P $PID

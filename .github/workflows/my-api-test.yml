@@ -15,7 +15,9 @@ jobs:
       - name: Running my App
         run: |
           java -jar ./target/gitactiontest-0.0.1-SNAPSHOT.jar
+          sleep 60
       - name: newman action
+        needs: Running my App
         continue-on-error: true
         uses: matt-ball/newman-action@master
         with:

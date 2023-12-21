@@ -31,7 +31,6 @@ jobs:
 
       - name: Newman action
         run: |
-          # Adjust the command as needed
           echo "Running Newman"
           npm install -g newman
           newman run my-test.json

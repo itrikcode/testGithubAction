@@ -12,7 +12,7 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
 
-  get-message-version:
+  shwo-commit-messages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

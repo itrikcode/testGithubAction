@@ -1,4 +1,4 @@
-name: testing
+name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
@@ -11,17 +11,3 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-  show-commit-message:
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v2
-
-          - name: Get commit message
-            id: commit-message
-            run: |
-              COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-              echo "::set-output name=commit_message::$COMMIT_MESSAGE"
-
-          - name: Display commit message
-            run: |
-              echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"

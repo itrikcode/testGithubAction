@@ -1,24 +1,24 @@
-name: Show Commit Message
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  show-commit-message:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Get commit message
-        id: commit-message
-        run: |
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          echo "::set-output name=commit_message::$COMMIT_MESSAGE"
-
-      - name: Display commit message my
-        run: |
-          echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"
+#name: Show Commit Message
+#
+#on:
+#  push:
+#    branches:
+#      - master
+#
+#jobs:
+#  show-commit-message:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Get commit message
+#        id: commit-message
+#        run: |
+#          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+#          echo "::set-output name=commit_message::$COMMIT_MESSAGE"
+#
+#      - name: Display commit message my
+#        run: |
+#          echo "Commit Message: ${{ steps.commit-message.outputs.commit_message }}"

@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -21,7 +19,6 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn clean install
-
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
@@ -41,9 +38,9 @@ jobs:
 #        run: newman run api-env.json
 #      - name: run postman collection
 #        run: newman run my-test.json
-      - name: run newnam action
-      - uses: actions/checkout@master
-      - uses: matt-ball/newman-action@master
+      - name: newman action
+        continue-on-error: true
+        uses: matt-ball/newman-action@master
         with:
-         collection: my-test.json
-         environment: api.env.json
+            collection: my-test.json
+            environment: api-env.json

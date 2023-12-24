@@ -20,7 +20,7 @@ jobs:
         id: run-app
         run: |
           java -jar ./target/gitactiontest-0.0.1-SNAPSHOT.jar
-          sleep 40
+          sleep 60s
       - name: Newman action
         run: |
           echo "Running Newman"

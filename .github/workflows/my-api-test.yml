@@ -20,33 +20,36 @@ jobs:
         id: run-app
         run: |
           java -jar ./target/gitactiontest-0.0.1-SNAPSHOT.jar
-<<<<<<< HEAD
           sleep 40
-
-  newman-action:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Newman action
         run: |
           echo "Running Newman"
           npm install -g newman
           newman run my-test.json
-=======
-      - name: newman action
-        continue-on-error: true
-        uses: matt-ball/newman-action@master
-        with:
-          collection: my-test.json
-          reporter: cli
-          bail: true
-      - name: Stopping my app
-        run:  # Retrieve the PID from the output variable
-          PID=${{ steps.long-running-command.outputs.pid }}
-          pkill -P $PID
-      - name: Print log
-        run: cat dockerlog.out
->>>>>>> parent of 8ac9f08 (add more line)
+
+#  newman-action:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Newman action
+#        run: |
+#          echo "Running Newman"
+#          npm install -g newman
+#          newman run my-test.json
+#      - name: newman action
+#        continue-on-error: true
+#        uses: matt-ball/newman-action@master
+#        with:
+#          collection: my-test.json
+#          reporter: cli
+#          bail: true
+#      - name: Stopping my app
+#        run:  # Retrieve the PID from the output variable
+#          PID=${{ steps.long-running-command.outputs.pid }}
+#          pkill -P $PID
+#      - name: Print log
+#        run: cat dockerlog.out
+

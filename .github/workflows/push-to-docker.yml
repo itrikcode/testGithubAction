@@ -28,10 +28,8 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: vk786/test:latest
+          image: vk786/test-app-my:latest
           registry: docker.io
           dockerfile: Dockerfile
-          username: vk786
-          password: ${{secrets.MY_PASSWORD}}
-      - name: push docker hub
-        run: docker push docker.io/vk786/test:latest
+          username: ${{secrets.USER_NAME}}
+          password: ${{secrets.USER_PASSWORD}}

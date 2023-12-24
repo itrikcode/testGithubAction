@@ -32,6 +32,6 @@ jobs:
           registry: docker.io
           dockerfile: Dockerfile
           username: vk786
-          password: sahil@786
+          password: ${{ secrets.MY_PASSWORD }}
       - name: push docker hub
         run: docker push docker.io/vk786/test:latest

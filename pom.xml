@@ -47,6 +47,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>
+			test-app
+		</finalName>
 	</build>
 
 </project>

@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "0f21c5ec-a337-4cca-abf4-8132458f3490",
+		"name": "my test",
+		"description": "# 🖇️ Get started here\n\nPostman's [scripting](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) feature allows you to build conditional workflows using a collection. You can branch and loop over a set of requests.\n\nThis template contains a sample conditional workflow for testing successful user creation across a data array.\n\nThe workflow is set to run in successive iterations with different values in each iteration. If the API returns a successful response in an iteration, the next iteration is triggered, and so on. You will get a report of successful user creations when all the iterations are successful. If a user creation fails, the loop is terminated, and you will get a report of the failed attempt.\n\n<img src=\"https://content.pstmn.io/d21cb133-1e04-41f6-9ef6-9aaf85df4e82/aW1hZ2UucG5n\" alt=\"Workflow%20depicting%20the%20collection%20execution\" width=\"638\" height=\"720\">\n\nThe [postman.setNextRequest()](https://learning.postman.com/docs/postman/scripts/branching-and-looping/) function enables you to change the order of requests in a collection while testing. This function allows you to conditionally skip specific requests, repeat requests, terminate the collection early, etc. You can use conditional workflows in various use cases, from [generating a Spotify playlist](https://blog.postman.com/generate-spotify-playlists-using-a-postman-collection/) to [checking your website for broken links](https://blog.postman.com/check-for-broken-links-on-your-website-using-a-postman-collection/).\n\n## 🔖 **How to use this template**\n\n**Step 1:** Open the collection and click on the \"View more actions\" icon.\n\n**Step 2:** Click \"Run Collection\" to open the [collection runner](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/).\n\n**Step 3:** Click on \"Run Conditional Workflow\" to run the collection.\n\n#### Modifying the data\n\nYou can find the data array in the collection variables section, which you can navigate to by clicking on the collection's name in the sidebar and then selecting the Variables tab.\n\nThe data array follows this structure:\n\n``` json\n[\n    {\n        \"username\": \"\",\n        \"name\": \"\",\n        \"role\": \"\"\n    },\n    ...\n]\n\n ```\n\n## 💡Related templates\n\n[Async operations](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=66c7f0e5-065a-4d08-9c7e-0825e9e29e24&sourceTemplateId=78475d97-9a36-4731-ab24-9adf6a94d0fb)  \n[Data visualization](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=c9e72d75-ded7-4135-a721-5d59ddda6d59&sourceTemplateId=78475d97-9a36-4731-ab24-9adf6a94d0fb)  \n[Integration testing](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=fe506090-ca91-4340-bea9-82d2c3d2bb9a&sourceTemplateId=78475d97-9a36-4731-ab24-9adf6a94d0fb)  \n[Reusing requests and scripts](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=0cb2db53-2dee-430b-a0cf-21f1dbb50bb1&sourceTemplateId=78475d97-9a36-4731-ab24-9adf6a94d0fb)  \n[Run collection with data file](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=6a8f6393-58ab-4458-944c-7fc8f08448da&sourceTemplateId=78475d97-9a36-4731-ab24-9adf6a94d0fb)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23420048"
+	},
+	"item": [
+		{
+			"name": "emp create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var payloadBody = JSON.parse(pm.request.body.raw);",
+							"console.log(payloadBody.name);",
+							"var name = payloadBody.name;",
+							"pm.collectionVariables.set(\"created\", payloadBody);",
+							"pm.collectionVariables.set(\"name\", name);",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"vivek\",\n    \"address\": \"kannauj\"\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"save"
+					]
+				},
+				"description": "This request creates a new user. It runs as many times as the number of elements in the data array.\n\nThe pre-request script sets the current user information in a variable and then uses that variable in the request body.\n\nThe test script takes care of storing the response and branching the execution based on the success of the request."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Created Entity and Validate content Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var expected = pm.collectionVariables.get(\"created\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate content\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(\"Expected: \" + expected);\r",
+							"    console.log(\"Received: \" + jsonData);\r",
+							"    pm.expect(jsonData).to.eql(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/show",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"show"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "users",
+			"value": "[{\"username\": \"flash\",\"name\": \"Barry Allen\",\"role\": \"Superhero\"},{\"username\": \"wonder_woman\",\"name\": \"Diana Prince\",\"role\":\"Superhero\"},{\"username\": \"batman\",\"name\": \"Bruce Wayne\",\"role\": \"Superhero\"}]"
+		},
+		{
+			"key": "results",
+			"value": "[]",
+			"type": "string"
+		},
+		{
+			"key": "successAPIUrl",
+			"value": "https://postman-echo.com/post",
+			"type": "string"
+		},
+		{
+			"key": "failureAPIUrl",
+			"value": "https://postman-echo.com/post",
+			"type": "string"
+		},
+		{
+			"key": "idx",
+			"value": "0"
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "role",
+			"value": ""
+		},
+		{
+			"key": "created",
+			"value": ""
+		}
+	]
+}

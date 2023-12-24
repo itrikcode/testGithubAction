@@ -37,5 +37,9 @@ jobs:
         run: sleep 20
       - name: install newman
         run:  npm install -g newman
+      - name: set env test
+        run:
+        with:
+          environment: api-env.json
       - name: run postman collection
         run: newman run my-test.json

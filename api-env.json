@@ -8,12 +8,17 @@
       "enabled": true
     },
     {
-      "key": "entity-manager",
+      "key": "get-user",
       "value": "http://localhost:8080",
       "type": "default",
       "enabled": true
     },
-
+    {
+      "key": "create-user",
+      "value": "http://localhost:8080",
+      "type": "default",
+      "enabled": true
+    }
   ],
   "name": "My Workspace Globals",
   "_postman_variable_scope": "globals",

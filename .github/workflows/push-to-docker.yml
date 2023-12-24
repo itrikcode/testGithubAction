@@ -31,7 +31,7 @@ jobs:
           image: vk786/test:latest
           registry: docker.io
           dockerfile: Dockerfile
-          username: ${{ secrets.MY_USERNAME }}
-          password: ${{ secrets.MY_PASSWORD }}
+          username: vk786
+          password: sahil@786
       - name: push docker hub
         run: docker push docker.io/vk786/test:latest

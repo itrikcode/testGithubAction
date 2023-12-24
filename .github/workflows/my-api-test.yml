@@ -15,17 +15,17 @@ jobs:
       - name: Building my app
         run: |
           mvn clean package -DskipTests
-
       - name: Running my App
         id: run-app
         run: |
           java -jar ./target/gitactiontest-0.0.1-SNAPSHOT.jar
           sleep 60s
-      - name: Newman action
-        run: |
-          echo "Running Newman"
-          npm install -g newman
-          newman run my-test.json
+      - name: newman action
+        continue-on-error: true
+        uses: matt-ball/newman-action@master
+        with:
+            collection: my-test.json
+            environment: api-env.json
 
 #  newman-action:
 #    needs: build

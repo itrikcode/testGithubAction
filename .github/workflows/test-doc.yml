@@ -38,6 +38,6 @@ jobs:
       - name: install newman
         run:  npm install -g newman
       - name: set env test
-        run: newman api-env.json
+        run: newman run api-env.json
       - name: run postman collection
         run: newman run my-test.json

@@ -25,7 +25,7 @@ public class Controller {
     }
     @RequestMapping(value = "/show",method = RequestMethod.GET)
     public ResponseEntity<List<String>> showAll( ){
-
+        System.out.println("Hello testing");
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 

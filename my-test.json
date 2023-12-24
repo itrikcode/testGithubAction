@@ -53,12 +53,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/save",
-					"protocol": "http",
+					"raw": "{{create-user}}/save",
 					"host": [
-						"localhost"
+						"{{create-user}}"
 					],
-					"port": "8080",
 					"path": [
 						"save"
 					]
@@ -95,9 +93,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{entity-manager}}/show",
+					"raw": "{{get-user}}/show",
 					"host": [
-						"{{entity-manager}}"
+						"{{get-user}}"
 					],
 					"path": [
 						"show"

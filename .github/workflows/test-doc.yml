@@ -35,7 +35,7 @@ jobs:
         run: docker run -d -p 8080:8080 vk786/test-app-my:latest
       - name: wait for docker container to start
         run: sleep 20
-      - name: run post man api collection
-        run: |
-          npm install -g newman
-          newnam run my-test.json
+      - name: install newman
+        run:  npm install -g newman
+      - name: run postman collection
+        run: newman run my-test.json

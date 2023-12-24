@@ -23,13 +23,13 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: vk786/test-app-my
-          tags: latest
+          tags: v1
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.USER_PASSWORD }}
       - name: Run docker container
-        run: docker run -d -p 8080:8080 vk786/test-app-my:latest
+        run: docker run -d -p 8080:8080 vk786/test-app-my:v1
       - name: wait for docker container to start
         run: sleep 20
 #      - name: install newman

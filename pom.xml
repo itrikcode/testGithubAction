@@ -14,7 +14,7 @@
 	<name>demo</name>
 	<description>testing the project for github action</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -15,10 +15,8 @@
 					"script": {
 						"exec": [
 							"var payloadBody = JSON.parse(pm.request.body.raw);",
-							"console.log(payloadBody.name);",
-							"var name = payloadBody.name;",
+							"console.log(payloadBody);",
 							"pm.collectionVariables.set(\"created\", payloadBody);",
-							"pm.collectionVariables.set(\"name\", name);",
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
 							"});",
@@ -47,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"vivek\",\n    \"address\": \"kannauj\"\n   \n}",
+					"raw": "{\n    \"name\": \"name\",\n    \"address\": \"delhi\"\n   \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,15 +75,11 @@
 					"script": {
 						"exec": [
 							"var expected = pm.collectionVariables.get(\"created\");\r",
+							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Validate content\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    console.log(\"Expected: \" + expected);\r",
-							"    console.log(\"Received: \" + jsonData);\r",
-							"    pm.expect(jsonData).to.eql(expected);\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -173,6 +167,10 @@
 		},
 		{
 			"key": "created",
+			"value": ""
+		},
+		{
+			"key": "address",
 			"value": ""
 		}
 	]

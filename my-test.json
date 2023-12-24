@@ -95,12 +95,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/show",
-					"protocol": "http",
+					"raw": "{{entity-manager}}/show",
 					"host": [
-						"localhost"
+						"{{entity-manager}}"
 					],
-					"port": "8080",
 					"path": [
 						"show"
 					]

@@ -37,9 +37,10 @@ jobs:
           password: ${{ secrets.USER_PASSWORD }}
       - name: docker tag
         run: |
-          docker tag vk786/test-app-my-${{steps.get-id.outputs.id}} vk786/test-app-my
+          docker tag vk786/test-app-my vk786/test-app-my:${{ steps.get-id.outputs.id }}
       - name: Run docker container
-        run: docker run -d -p 8080:8080 vk786/test-app-my:v1
+        run: docker run -d -p 8080:8080 vk786/test-app-my:${{ steps.get-id.outputs.id }}
+       # run: docker run -d -p 8080:8080 vk786/test-app-my:v1
       - name: wait for docker container to start
         run: sleep 20
 #      - name: install newman

@@ -26,9 +26,6 @@ jobs:
           echo "::set-output name=id::$id"
       - name: Build with Maven
         run: mvn clean install
-      - name: docker tag
-        run: |
-            docker tag actionapp-${{steps.get-id.outputs.id}} actionapp:java-latest
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
@@ -38,6 +35,9 @@ jobs:
           dockerfile: Dockerfile
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.USER_PASSWORD }}
+      - name: docker tag
+        run: |
+          docker tag vk786/test-app-my-${{steps.get-id.outputs.id}} vk786/test-app-my:java-latest
       - name: Run docker container
         run: docker run -d -p 8080:8080 vk786/test-app-my:v1
       - name: wait for docker container to start

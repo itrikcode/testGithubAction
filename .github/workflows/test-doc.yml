@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.USER_PASSWORD }}
       - name: docker tag
         run: |
-          docker tag vk786/test-app-my-${{steps.get-id.outputs.id}} vk786/test-app-my:java-latest
+          docker tag vk786/test-app-my-${{steps.get-id.outputs.id}} vk786/test-app-my
       - name: Run docker container
         run: docker run -d -p 8080:8080 vk786/test-app-my:v1
       - name: wait for docker container to start

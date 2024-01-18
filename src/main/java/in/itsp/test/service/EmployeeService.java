@@ -19,9 +19,9 @@ public class EmployeeService {
 
         System.out.println(Arrays.asList(list));
        if(list.isEmpty()){
-           return "failed";
+           return "failed to add user";
        }else {
-           return "save";
+           return "save user to db Thanks";
        }
     }
 

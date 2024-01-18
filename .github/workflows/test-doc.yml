@@ -23,7 +23,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: vk786/test-app-my
-          tags: v1
+          tags: v1-${{ env.TAG }}
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.USER_NAME }}

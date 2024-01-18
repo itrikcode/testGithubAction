@@ -19,13 +19,21 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
           cache: maven
+      - name: Get release number
+        id: get-id
+        run: |
+          id=$(echo ${{github.ref_name}} | cut -d/ -f2)
+          echo "::set-output name=id::$id"
       - name: Build with Maven
         run: mvn clean install
+      - name: docker tag
+        run: |
+            docker tag actionapp-${{steps.get-id.outputs.id}} actionapp:java-latest
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: vk786/test-app-my
-          tags: v1-${{ env.TAG }}
+        #  tags: v1-${{ env.TAG }}
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.USER_NAME }}

@@ -23,4 +23,7 @@ jobs:
         release_name: ${{steps.get-id.outputs.id}}-java-kafka
         draft: false
         prerelease: false
-        body_path: RELEASENOTES
+        body: |
+          Changes in this Release
+          - First Change
+          - Second Change
